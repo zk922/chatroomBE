@@ -2,8 +2,25 @@
   "name": "chatroomBE",
   "version": "1.0.0",
   "description": "chatroom back end",
-  "main": "index.js",
   "repository": "https://github.com/zk922/chatroomBE",
   "author": "zk922",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "serve": "./node_modules/.bin/ts-node ./src/index.ts"
+  },
+  "engines": {
+    "node": ">= 7.6"
+  },
+  "dependencies": {
+    "koa": "^2.5.2",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.46",
+    "@types/koa-router": "^7.0.31",
+    "@types/node": "^10.5.4",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2",
+    "webpack": "^4.16.3"
+  }
 }
