@@ -1,24 +1,20 @@
 import * as Koa from "koa";
-import * as Router from "koa-router";
-import {setAccessControl} from "./middlewares/setHeaders";
-import rootFn from "./routes/rootFn"
+import * as mount from "koa-mount";
+import statics from "./statics/statics";
+import api from "./api/api";
+
 
 const app = new Koa();
-const router = new Router();
-
-//设置跨域
-app.use(setAccessControl);
-
-//跟目录请求方法
-router.get('/', rootFn);
 
 
+//mount app
+//一个为静态资源服务，一个为api服务
+app.use(mount('/', statics));
 
 
+app.use(mount('/api/', api));
 
 
-
-app.use(router.routes());
-app.listen(8888, function () {
-  console.log('server started')
+app.listen(8088, ()=>{
+  console.log('service is running at port 8088');
 });

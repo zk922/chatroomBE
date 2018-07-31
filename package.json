@@ -12,12 +12,16 @@
     "node": ">= 7.6"
   },
   "dependencies": {
+    "@types/koa-mount": "^3.0.1",
     "koa": "^2.5.2",
-    "koa-router": "^7.4.0"
+    "koa-mount": "^3.0.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0"
   },
   "devDependencies": {
     "@types/koa": "^2.0.46",
     "@types/koa-router": "^7.0.31",
+    "@types/koa-static": "^4.0.0",
     "@types/node": "^10.5.4",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2",
