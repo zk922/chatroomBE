@@ -14,12 +14,14 @@
   "dependencies": {
     "@types/koa-mount": "^3.0.1",
     "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
     "koa-mount": "^3.0.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0"
   },
   "devDependencies": {
     "@types/koa": "^2.0.46",
+    "@types/koa-bodyparser": "^5.0.1",
     "@types/koa-router": "^7.0.31",
     "@types/koa-static": "^4.0.0",
     "@types/node": "^10.5.4",
