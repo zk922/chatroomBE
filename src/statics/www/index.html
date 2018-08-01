@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <script src="socket.io.js"></script>
 </head>
 <body>
 <script>
   let xhr = new XMLHttpRequest();
-  xhr.open('post', '/api/login');
+  xhr.open('post', '/chat/room');
   xhr.setRequestHeader('Content-type', 'application/json');
   xhr.responseType = 'text';
   xhr.onreadystatechange = function (e) {
@@ -16,6 +17,12 @@
     }
   };
   xhr.send(JSON.stringify({u_name: 'dafdd'}));
+</script>
+<script>
+  let chat = io.connect('http://localhost:8088/chat/room');
+  chat.on('connect', function () {
+    chat.emit('hi!');
+  });
 </script>
 </body>
 </html>
