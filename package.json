@@ -19,6 +19,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa-websocket": "^5.0.1",
+    "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1"
   },
   "devDependencies": {
@@ -30,6 +31,7 @@
     "@types/koa-static": "^4.0.0",
     "@types/koa-websocket": "^5.0.2",
     "@types/node": "^10.5.4",
+    "@types/socket.io": "^1.4.36",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2",
     "webpack": "^4.16.3"
