@@ -38,4 +38,4 @@ testem.log
 Thumbs.db
 
 
-./config.ts
+src/config.ts
