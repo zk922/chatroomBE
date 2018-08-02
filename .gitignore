@@ -7,7 +7,6 @@
 
 # dependencies
 /node_modules
-
 # IDEs and editors
 /.idea
 .project
@@ -38,4 +37,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/src/config.ts
+
+config.ts
