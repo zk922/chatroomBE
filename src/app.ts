@@ -4,9 +4,9 @@ import statics from "./statics/statics";
 import * as http from "http";
 import * as io from 'socket.io';
 import api from "./api/api";
+import addIoMiddleware from "./io/io"
 
-
-function serverStart() {
+async function serverStart() {
   const app = new Koa();
   /**
    * 一个为静态资源服务，一个为api服务
@@ -15,17 +15,25 @@ function serverStart() {
    * */
   app.use(mount('/', statics));
   app.use(mount('/api', api));
+
+
   /**
    * 在服务器添加socket.io 支持
    * 只有在聊天室或者私聊时候才需要创建io链接
    * **/
   const server = http.createServer(app.callback());
   const chat = io(server,{
-    path: '/chat'
+    path: '/chat'  //io资源路径设置为/chat
   });
-  chat.on('message',(data)=>{
-    console.log(data);
-  });
+
+  /**
+   * 添加io中间件
+   * **/
+  addIoMiddleware(chat);
+
+  /**
+   * 启动服务器
+   * **/
   server.listen(8088, () => {
     console.log('service is running at port 8088');
   });

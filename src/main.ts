@@ -3,7 +3,12 @@ import connectDb from "./db";
 
 async function start(){
   await connectDb();
-  serverStart();
+  console.info('db connected');
+
+  await serverStart();
 }
 
-start();
+start().catch(e => {
+  console.log(e);
+  process.exit(1);
+});
