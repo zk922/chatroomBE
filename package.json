@@ -6,7 +6,7 @@
   "author": "zk922",
   "license": "MIT",
   "scripts": {
-    "serve": "./node_modules/.bin/ts-node ./src/index.ts"
+    "serve": "./node_modules/.bin/ts-node ./src/main.ts"
   },
   "engines": {
     "node": ">= 7.6"
