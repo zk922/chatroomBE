@@ -1,11 +1,11 @@
 import * as Koa from "koa";
 import * as mount from "koa-mount";
 import * as http from "http";
-import * as io from 'socket.io';
+
 import * as bodyparser from "koa-bodyparser";
 
 import api from "./api/api";
-import addIoMiddleware from "./io/io"
+import createIoServers from "./io/io"
 import statics from "./statics/statics";
 import {serverConfig} from "./config";
 
@@ -28,27 +28,11 @@ async function serverStart() {
    * 只有在聊天室或者私聊时候才需要创建io链接
    * **/
   const server = http.createServer(app.callback());
-  const publicChat = io(server,{
-    path: '/chat/public'
-  });
-
-  const groupChat = io(server,{
-    path: '/chat/group'
-  });
-
-  const privateChat = io(server,{
-    path: '/chat/private'
-  });
-
-  const friendsChat = io(server,{
-    path: '/chat/friends'
-  });
 
   /**
-   * 添加io中间件
+   * 创建聊天服务
    * **/
-
-
+  createIoServers(server);
 
 
   /**

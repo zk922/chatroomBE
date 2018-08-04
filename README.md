@@ -8,41 +8,45 @@
 
 最初入口聊天室，所有人都在里面。
 
-path:'/chat/public'
+path:'/chat'
 
-namespace:'/'
+namespace:'/public'
 
-room: 'admin','normal'  用来区分用户身份
+身份：'admin','normal','tourist'
 
 #### 自定义群组:
 
 用户自己组建的群组，创建者是admin，其他用户是normal
 
-path:'/chat/group'
+path:'/chat'
 
-namespace: `/${groupId}`   groupId为群组的唯一标识
+namespace: `/group`
 
-room：'admin','normal'  用来区分用户身份群组
+room：'${groupId}'  groupId为群组的唯一标识
+
+身份：'admin','normal'
 
 #### 好友:
 
-私聊是临时会话，不进行信息保存。
+path:'/chat'
 
-path:'/chat/friends'
+namesapce: `/friends`   好友关系的唯一标识
 
-namesapce: `${friendId}`   好友关系的唯一标识
+room：'${friendId}'
 
-room：'normal' 好友无用户身份区分，均为normal
+好友无用户身份区分
 
 #### 私聊:
 
 私聊是临时会话，不进行信息保存。
 
-path:'/chat/private'
+path:'/chat'
 
-namesapce: `${privateId}`   privateId为私聊唯一标识
+namesapce: `/private/`
 
-room：'normal' 私聊无用户身份区分，均为normal
+room：'${privateId}' privateId为私聊唯一标识
+
+私聊无用户身份区分，均为normal
 
 ## 用户信息结构
 

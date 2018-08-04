@@ -1,6 +1,6 @@
 import md5 = require("blueimp-md5");
 
-async function login(ctx, next) {
+export async function login(ctx, next) {
 
   console.log('got new login request ', ctx.request.body);
 

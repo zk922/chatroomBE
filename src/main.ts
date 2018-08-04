@@ -4,7 +4,6 @@ import connectDb from "./db";
 async function start(){
   await connectDb();
   console.info('db connected');
-
   await serverStart();
 }
 
