@@ -7,21 +7,28 @@
 </head>
 <body>
 <script>
-  let xhr = new XMLHttpRequest();
-  xhr.open('post', '/api/login');
-  xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.responseType = 'text';
-  xhr.onreadystatechange = function (e) {
-    if(xhr.readyState === 4 && xhr.status === 200){
-      console.log(xhr.response);
-    }
-  };
-  xhr.send(JSON.stringify({u_name: 'dafdd'}));
+  // let xhr = new XMLHttpRequest();
+  // xhr.open('post', '/api/login');
+  // xhr.setRequestHeader('Content-type', 'application/json');
+  // xhr.responseType = 'text';
+  // xhr.onreadystatechange = function (e) {
+  //   if(xhr.readyState === 4 && xhr.status === 200){
+  //     console.log(xhr.response);
+  //   }
+  // };
+  // xhr.send(JSON.stringify({u_name: 'dafdd'}));
 </script>
 <script>
-  let chat = io('/chat', {path: '/chat'});
+  let chat = io('/public/123',{path: '/chat'});
+  console.log(chat);
   chat.on('connect', function () {
-    chat.emit('hi!');
+    chat.emit('hi  1!');
+  });
+
+  let chat2 = io('/public',{path: '/chat'});
+  console.log(chat2);
+  chat2.on('connect', function () {
+    chat.emit('hi  2!');
   });
   // var CreateWebSocket = (function () {
   //   return function (urlValue) {
