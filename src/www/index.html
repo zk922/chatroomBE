@@ -28,7 +28,9 @@
   let chat2 = io('/public',{path: '/chat'});
   console.log(chat2);
   chat2.on('connect', function () {
-    chat.emit('hi  2!');
+    chat2.emit('eee', 'ddd');
+    chat2.on('message', (v)=>{console.log(v)})
+
   });
   // var CreateWebSocket = (function () {
   //   return function (urlValue) {

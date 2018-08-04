@@ -33,6 +33,7 @@ export class PublicChat{
       });
       socket.use((packet: Packet, next) => {
         // console.log(packet)
+        this.nsp.to(socket.id).emit('message', packet)
 
       });
       //TODO 根据token，去读取用户信息，将socket封装成User
