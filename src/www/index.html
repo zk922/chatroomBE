@@ -6,17 +6,18 @@
   <script src="socket.io.js"></script>
 </head>
 <body>
+<script src="ddd,js"></script>
 <script>
-  // let xhr = new XMLHttpRequest();
-  // xhr.open('post', '/api/login');
-  // xhr.setRequestHeader('Content-type', 'application/json');
-  // xhr.responseType = 'text';
-  // xhr.onreadystatechange = function (e) {
-  //   if(xhr.readyState === 4 && xhr.status === 200){
-  //     console.log(xhr.response);
-  //   }
-  // };
-  // xhr.send(JSON.stringify({u_name: 'dafdd'}));
+  let xhr = new XMLHttpRequest();
+  xhr.open('post', '/api/login');
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.responseType = 'text';
+  xhr.onreadystatechange = function (e) {
+    if(xhr.readyState === 4 && xhr.status === 200){
+      console.log(xhr.response);
+    }
+  };
+  xhr.send(JSON.stringify({u_name: 'dafdd'}));
 </script>
 <script>
   let chat = io('/public/123',{path: '/chat'});
