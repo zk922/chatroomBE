@@ -39,3 +39,5 @@ Thumbs.db
 
 
 src/config.ts
+src/logs
+src/logs_err

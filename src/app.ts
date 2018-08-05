@@ -1,38 +1,47 @@
 import * as Koa from "koa";
 import * as mount from "koa-mount";
 import * as http from "http";
-
 import * as bodyparser from "koa-bodyparser";
 
-import api from "./api/api";
-import createIoServers from "./io/io"
-import statics from "./statics/statics";
-import {serverConfig} from "./config";
 
-async function serverStart() {
+import api from "./api/api";
+import ChatServer from "./io/io"
+import statics from "./statics/statics";
+import logger from "./utilities/log";
+
+async function serverStart(serverConfig, logConfig) {
   const app = new Koa();
+
+  /**
+   * 添加日志
+   * **/
+  app.use(logger(logConfig));
+
+
+  /**
+   * 添加bodyparser
+   * 不然的话，需要去原生node的request流对象上去处理数据
+   * **/
+  app.use(bodyparser({
+    enableTypes: ['json', 'form', 'text']
+  }));
+
+
   /**
    * 一个为静态资源服务，一个为api服务
    * 静态资源仅包含前端资源，使用ng打包，发布在statics/www/目录下
    * api中包含api路由，包含所有类型增改删查的接口
    * */
-  app.use(bodyparser({
-    enableTypes: ['json', 'form', 'text']
-  }));
   app.use(mount('/', statics));
   app.use(mount('/api', api));
 
 
   /**
    * 在服务器添加socket.io 支持
-   * 只有在聊天室或者私聊时候才需要创建io链接
-   * **/
-  const server = http.createServer(app.callback());
-
-  /**
    * 创建聊天服务
    * **/
-  createIoServers(server);
+  const server = http.createServer(app.callback());
+  const chatServer = ChatServer.createServer(server);
 
 
   /**

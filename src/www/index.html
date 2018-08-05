@@ -6,17 +6,18 @@
   <script src="socket.io.js"></script>
 </head>
 <body>
+<script src="ddd,js"></script>
 <script>
-  // let xhr = new XMLHttpRequest();
-  // xhr.open('post', '/api/login');
-  // xhr.setRequestHeader('Content-type', 'application/json');
-  // xhr.responseType = 'text';
-  // xhr.onreadystatechange = function (e) {
-  //   if(xhr.readyState === 4 && xhr.status === 200){
-  //     console.log(xhr.response);
-  //   }
-  // };
-  // xhr.send(JSON.stringify({u_name: 'dafdd'}));
+  let xhr = new XMLHttpRequest();
+  xhr.open('post', '/api/login');
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.responseType = 'text';
+  xhr.onreadystatechange = function (e) {
+    if(xhr.readyState === 4 && xhr.status === 200){
+      console.log(xhr.response);
+    }
+  };
+  xhr.send(JSON.stringify({u_name: 'dafdd'}));
 </script>
 <script>
   let chat = io('/public/123',{path: '/chat'});
@@ -28,7 +29,9 @@
   let chat2 = io('/public',{path: '/chat'});
   console.log(chat2);
   chat2.on('connect', function () {
-    chat.emit('hi  2!');
+    chat2.emit('eee', 'ddd');
+    chat2.on('message', (v)=>{console.log(v)})
+
   });
   // var CreateWebSocket = (function () {
   //   return function (urlValue) {
