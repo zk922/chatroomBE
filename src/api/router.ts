@@ -7,7 +7,7 @@ const router = new Router();
 router.post('/login', login);
 
 
-export let routes = router.routes()
+export let routes = router.routes();
 
 
 export default routes;
