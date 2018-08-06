@@ -1,4 +1,3 @@
-import md5 = require("blueimp-md5");
 
 export async function login(ctx, next) {
 
