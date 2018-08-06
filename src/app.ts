@@ -3,11 +3,10 @@ import * as mount from "koa-mount";
 import * as http from "http";
 import * as bodyparser from "koa-bodyparser";
 
-
 import api from "./api/api";
-import ChatServer from "./io/io"
 import statics from "./statics/statics";
 import logger from "./utilities/log";
+import ChatServer from "./models/ChatServer";
 
 async function serverStart(serverConfig, logConfig) {
   const app = new Koa();

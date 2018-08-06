@@ -6,7 +6,7 @@ export class User {
 
   constructor(socket: Socket){
 
-    //需要
+
 
 
   }

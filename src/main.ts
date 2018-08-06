@@ -5,8 +5,6 @@ import {dbConfig, logConfig, serverConfig} from "./config";
 /**
  * 聊天室主引导文件
  * **/
-
-
 async function start(){
   await connectDb(dbConfig);
   console.info('db connected');
