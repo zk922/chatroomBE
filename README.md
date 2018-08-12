@@ -1,4 +1,4 @@
-# chatroomBE
+# chatroomBE（还在开发中，下面结构会改变）
 
 ## 聊天室结构划分
 
