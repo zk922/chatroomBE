@@ -16,6 +16,12 @@ async function serverStart(serverConfig, logConfig) {
    * **/
   app.use(logger(logConfig));
 
+  // /**
+  //  * 设置通用cookie
+  //  * **/
+  // app.use(async function (ctx, next) {
+  //   ctx.cookies.set('pwdSalt', await createSalt())
+  // });
 
   /**
    * 添加bodyparser
