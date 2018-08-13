@@ -39,7 +39,6 @@ export async function createJWT(u_id: string, u_name: string, salt: string) {
   const signature = await createSha256Hmac(`${headerBase64}.${payloadBase64}`, salt);
 
   return `${headerBase64}.${payloadBase64}.${signature}`;
-
 }
 
 
