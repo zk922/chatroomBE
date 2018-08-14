@@ -21,14 +21,17 @@ export const FriendShip = new Schema({  //好友关系模型
  * **/
 export const Group = new Schema({
   name: String,   //群组名称
-  users: []
+  users: [String]   //用户群组关系列表
 });
 
 /**
- * 用户和群组的map模型
+ * 用户和群组的关系模型
  * **/
 export const UserInGroup = new Schema({
-
+  u_id: String,    //用户id,唯一标识
+  nickName: String,    //用户在群组中的昵称
+  group_id: String,    //群组id
+  identify: Number     //用户身份
 });
 
 
@@ -40,6 +43,6 @@ export const User = new Schema({
 
   //用户信息相关
   nickName: String,   //用户昵称
-  friends: [FriendShip],        //用户朋友关系列表
-  groups: [UserInGroup]          //用户群组关系列表
+  friends: [String],        //用户朋友关系列表,好友关系id array
+  groups: [String]          //用户群组关系列表，群组关系id array
 });
