@@ -10,8 +10,9 @@ import {groupSchemas, authentication, userSchemas} from "./mongooseSchema";
  *
  * 一个monggose可以创建多条与MongoDB的链接，这个项目里面，仅使用一条链接即可。
  * **/
-const UserModel = model('User', userSchemas.User);
+export const UserModel = model('User', userSchemas.User);
 
-const GroupModel = model('Group', groupSchemas.Group);
+export const GroupModel = model('Group', groupSchemas.Group);
 
-const AuthModel = model('Auth', authentication);
+export const AuthModel = model('Auth', authentication);
+

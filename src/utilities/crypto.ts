@@ -5,7 +5,7 @@ import * as bcrypt from 'bcrypt';
 /**
  * 生成随机字符串，使用randomBytes随机字节，转成base64字符串
  * **/
-export function createSalt(sizeOfBytes: number, encode: string = 'base64'): Promise<string> {
+export function createRandomString(sizeOfBytes: number, encode: string = 'base64'): Promise<string> {
   return new Promise((resolve, reject)=>{
     crypto.randomBytes(sizeOfBytes, (err, buf)=>{
       if(err){

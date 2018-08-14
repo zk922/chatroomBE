@@ -1,0 +1,45 @@
+Tue Aug 14 2018 12:43:40
+  <--  GET  ::1  /ddd,js
+  -->  404 Not Found  4ms  
+  err name: ReferenceError
+  err message: status is not defined
+  err stack: ReferenceError: status is not defined
+    at D:\Project\chatroomBE\src\utilities\log.ts:121:23
+    at Generator.next (<anonymous>)
+    at fulfilled (D:\Project\chatroomBE\src\utilities\log.ts:4:58)
+    at <anonymous>
+===========================================================================
+Tue Aug 14 2018 12:43:43
+  <--  GET  ::1  /ddd,js
+  -->  404 Not Found  0ms  
+  err name: ReferenceError
+  err message: status is not defined
+  err stack: ReferenceError: status is not defined
+    at D:\Project\chatroomBE\src\utilities\log.ts:121:23
+    at Generator.next (<anonymous>)
+    at fulfilled (D:\Project\chatroomBE\src\utilities\log.ts:4:58)
+    at <anonymous>
+===========================================================================
+Tue Aug 14 2018 12:43:43
+  <--  POST  ::1  /api/register
+  -->  404 Not Found  82ms  
+  err name: ReferenceError
+  err message: status is not defined
+  err stack: ReferenceError: status is not defined
+    at D:\Project\chatroomBE\src\utilities\log.ts:121:23
+    at Generator.next (<anonymous>)
+    at fulfilled (D:\Project\chatroomBE\src\utilities\log.ts:4:58)
+    at <anonymous>
+    at process._tickDomainCallback (internal/process/next_tick.js:228:7)
+===========================================================================
+Tue Aug 14 2018 12:43:43
+  <--  GET  ::1  /favicon.ico
+  -->  404 Not Found  5ms  
+  err name: ReferenceError
+  err message: status is not defined
+  err stack: ReferenceError: status is not defined
+    at D:\Project\chatroomBE\src\utilities\log.ts:121:23
+    at Generator.next (<anonymous>)
+    at fulfilled (D:\Project\chatroomBE\src\utilities\log.ts:4:58)
+    at <anonymous>
+===========================================================================
