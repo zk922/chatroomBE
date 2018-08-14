@@ -1,6 +1,7 @@
 import * as Router from 'koa-router';
 import login from "./middlewares/login"
 import register from "./middlewares/register";
+import authorize from "./middlewares/authorize";
 
 const router = new Router();
 
@@ -9,7 +10,8 @@ router
 .post('/login', login)               //登录
 .post('/register', register);        //注册
 
-
+//注册登陆不需要检查授权,其他路径需要检查
+router.use(authorize);
 
 
 export let routes = router.routes();
