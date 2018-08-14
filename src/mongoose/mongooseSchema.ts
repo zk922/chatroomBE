@@ -1,62 +1,49 @@
 import {Schema} from "mongoose";
 
 export namespace userSchemas{
-  export const BaseUser = new Schema({
-    u_id: String
-  });
 
-  export const User = new Schema(BaseUser);
-  User.add({
+  export const User = new Schema({
+    u_id: String,
     u_name: String,
     groups: [groupSchemas.BaseGroup],
-    friends: [friendSchemas.Friend],
+    friends: [friendSchemas.Friend]
   });
 
-  export const UserInGroup = new Schema(BaseUser);
-  UserInGroup.add({
+  export const UserInGroup = new Schema({
+    u_id: String,
     u_name: String,
     identity: Number
   });
-
 }
 
 export namespace groupSchemas {
   export const BaseGroup = new Schema({
-    group_id: String
+    group_id: String,
+    group_name: String
   });
-
-  export const Group = new Schema(BaseGroup);
-  Group.add({
+  export const Group = new Schema({
+    group_id: String,
     group_name: String,
     users: [userSchemas.UserInGroup]
   });
-
 }
 
 export namespace friendSchemas {
-  export const BaseFriend = new Schema({
-    u_id: String
-  });
-  export const Friend = new Schema(BaseFriend);
-  Friend.add({
+
+  export const Friend = new Schema({
+    u_id: String,
     name: String,
     friend_ship_id: String
   });
+
 }
 
 
 export namespace friendShipSchemas {
-  export const BaseFriendShip = new Schema({
-    friend_ship_id: String,
+  export const FriendShip = new Schema({
     u_id_1: String,
     u_id_2: String
   });
-
-  export const FriendShip = new Schema(BaseFriendShip)
-  FriendShip.add({
-    //TODO 好友关系相关
-  });
-
 }
 
 
