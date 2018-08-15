@@ -55,7 +55,7 @@ export async function register(ctx, next) {
   const newUser = new UserModel({
     name: params.name,
     pwd: pwd,
-    secretKey: secret
+    secret: secret
   });
   console.log(newUser);
   try{

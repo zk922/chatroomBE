@@ -10,15 +10,16 @@ dfafadfasdfasdfsa
 <!--<script src="ddd,js"></script>-->
 <script>
   let xhr = new XMLHttpRequest();
-  xhr.open('post', '/api/register');
+  xhr.open('post', '/api/other');
   xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.setRequestHeader('authorize', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1MzQzMjIyOTgxMzEsImV4cCI6MTUzNDkyNzA5ODEzMSwidV9pZCI6IjViNzNlNjdhMWRlMjE1NDU5ODQ3ZTQ2YyJ9.vkAXE2ckfQLdLZZjdeooV/qTUoSZJq/Slz9q3GJEOck=');
   xhr.responseType = 'text';
   xhr.onreadystatechange = function (e) {
     if(xhr.readyState === 4 && xhr.status === 200){
       console.log(xhr.response);
     }
   };
-  xhr.send(JSON.stringify({name: '12', pwd: '1234'}));
+  xhr.send(JSON.stringify({name: 'wq3323', pwd: '1234'}));
 </script>
 <script>
   // let chat = io('/public/123',{path: '/chat'});
