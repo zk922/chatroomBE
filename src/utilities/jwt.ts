@@ -38,3 +38,4 @@ export async function createJWT(u_id: string, salt: string) {
 
   return `${headerBase64}.${payloadBase64}.${signature}`;
 }
+
