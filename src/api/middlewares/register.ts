@@ -10,7 +10,9 @@ import {createJWT} from "../../utilities/jwt";
  * 4.保存至数据库
  * 5.保存成功颁发token
  * **/
+
 //TODO 并没有防止刷接口，这点以后需要处理
+
 export async function register(ctx, next) {
   console.log('收到注册信息：',ctx.request.body);
   const params = ctx.request.body;
@@ -47,7 +49,7 @@ export async function register(ctx, next) {
     return;
   }
 
-  //3.生成办法token的随机盐值，也是用户信息里面的当前secert，并再次加密密码
+  //3.生成颁发token的随机盐值，也是用户信息里面的当前secert，并再次加密密码
   const secret = await createRandomString(256);
   const pwd = await generatePwdHash(params.pwd);
 

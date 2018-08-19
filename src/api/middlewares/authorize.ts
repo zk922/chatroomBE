@@ -1,5 +1,5 @@
 import {UserModel} from "../../mongoose/mongooseModels";
-import {createSha256Hmac} from "../../utilities/crypto";
+import {compareJWT} from "../../utilities/jwt";
 
 
 /**
@@ -18,9 +18,11 @@ export async function authorize(ctx, next) {
   }
   //2.解析payload
   let id: string;
+  let exp: number;
   try{
-    let payload = auth.match(/\.(\w+)\./)[1];
-    id = JSON.parse(new Buffer(payload, 'base64').toString('utf8')).u_id;
+    let payload = JSON.parse(new Buffer(auth.match(/\.(\w+)\./)[1], 'base64').toString('utf8'));
+    id = payload.u_id;
+    exp = payload.exp;
   }
   catch (e) {
     console.log('认证头解析失败', e);
@@ -28,7 +30,15 @@ export async function authorize(ctx, next) {
     ctx.body = {result: 1, msg: '无效的认证头'};
     return;
   }
-  //3.获取secret
+  //3.检查是否过期
+  if(new Date().getTime() >= exp){
+    console.log('token过期');
+    ctx.status = 401;
+    ctx.body = {result: 2, msg: 'token已经过期'};
+    return;
+  }
+
+  //4.获取secret
   let query = UserModel.findById(id);
   let secret;
   try{
@@ -39,7 +49,7 @@ export async function authorize(ctx, next) {
     ctx.body = {result: 2, msg: '服务器错误，认证失败'};
     return;
   }
-  //4.比对secret
+  //5.比对secret
   try{
     let result = await compareJWT(auth, secret);
     if(!result){
@@ -60,15 +70,3 @@ export async function authorize(ctx, next) {
 export default authorize;
 
 
-//验证token是否合法
-async function compareJWT(token: string, secret: string){
-  const matches = token.match(/^([^.]+)\.([^.]+)\.([^.]+)/);
-  const header = matches[1];
-  const payload = matches[2];
-  const signature = matches[3];
-  const _signature = await createSha256Hmac(`${header}.${payload}`, secret);
-
-  // console.log('比对1', signature)
-  // console.log('比对2', _signature)
-  return signature === _signature;
-}
