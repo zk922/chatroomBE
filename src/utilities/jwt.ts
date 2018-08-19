@@ -39,3 +39,15 @@ export async function createJWT(u_id: string, salt: string) {
   return `${headerBase64}.${payloadBase64}.${signature}`;
 }
 
+//验证token是否合法
+export async function compareJWT(token: string, secret: string){
+  const matches = token.match(/^([^.]+)\.([^.]+)\.([^.]+)/);
+  const header = matches[1];
+  const payload = matches[2];
+  const signature = matches[3];
+  const _signature = await createSha256Hmac(`${header}.${payload}`, secret);
+
+  // console.log('比对1', signature)
+  // console.log('比对2', _signature)
+  return signature === _signature;
+}
