@@ -25,6 +25,12 @@ export class ChatServer {
     });
   }
 
+  private auth(): void{//认证用户
+
+  }
+
+
+
   private initSocket(socket: Socket){
     /**
      * 初始化用户过程：
@@ -34,6 +40,7 @@ export class ChatServer {
      *     1.3 验证成功，拉取信息，拉取失败，给提示，创建匿名用户，分配到public room
      *     1.4 拉取成功，根据所属群组，分配到所属rooms
      * **/
+
 
 
   }
