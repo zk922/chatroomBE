@@ -27,14 +27,14 @@ export async function authorize(ctx, next) {
   catch (e) {
     console.log('认证头解析失败', e);
     ctx.status = 401;
-    ctx.body = {result: 1, msg: '无效的认证头'};
+    ctx.body = {result: 2, msg: '无效的认证头'};
     return;
   }
   //3.检查是否过期
   if(new Date().getTime() >= exp){
     console.log('token过期');
     ctx.status = 401;
-    ctx.body = {result: 2, msg: 'token已经过期'};
+    ctx.body = {result: 3, msg: 'token已经过期'};
     return;
   }
 
@@ -46,7 +46,7 @@ export async function authorize(ctx, next) {
   }
   catch (e) {
     ctx.status = 500;
-    ctx.body = {result: 2, msg: '服务器错误，认证失败'};
+    ctx.body = {result: 4, msg: '服务器错误，认证失败'};
     return;
   }
   //5.比对secret
@@ -54,13 +54,13 @@ export async function authorize(ctx, next) {
     let result = await compareJWT(auth, secret);
     if(!result){
       ctx.status = 401;
-      ctx.body = {result: 2, msg: '认证未通过'};
+      ctx.body = {result: 5, msg: '认证未通过'};
       return;
     }
   }
   catch (e) {
     ctx.status = 401;
-    ctx.body = {result: 2, msg: '认证未通过'};
+    ctx.body = {result: 6, msg: '认证未通过'};
     return;
   }
 
