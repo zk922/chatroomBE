@@ -1,5 +1,12 @@
 import {createSha256Hmac} from "./crypto";
 
+
+interface Payload {
+  nbf: number;
+  exp: number;
+  u_id: string
+}
+
 /**
  * 自己简单生成jwt
  * 1. 每个用户在登陆时候生成token。
@@ -24,7 +31,7 @@ export async function createJWT(u_id: string, salt: string) {
     "alg": "HS256",
     "typ": "JWT"
   };
-  const payload = {
+  const payload: Payload = {
     "nbf": date.getTime(),
     "exp": date.getTime() + 7 * 24 * 60 * 60 * 1000,  //有效期为7天
     "u_id": u_id
@@ -38,6 +45,20 @@ export async function createJWT(u_id: string, salt: string) {
 
   return `${headerBase64}.${payloadBase64}.${signature}`;
 }
+
+//解析请求体
+export async function getPayload(token: string): Promise<Payload> {
+  let payload;
+  try{
+    payload = JSON.parse(new Buffer(token.match(/\.(\w+)\./)[1], 'base64').toString('utf8'));
+    return payload;
+  }
+  catch (e) {
+    return null;
+  }
+}
+
+
 
 //验证token是否合法
 export async function compareJWT(token: string, secret: string){

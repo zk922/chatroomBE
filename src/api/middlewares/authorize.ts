@@ -1,5 +1,5 @@
 import {UserModel} from "../../mongoose/mongooseModels";
-import {compareJWT} from "../../utilities/jwt";
+import {compareJWT, getPayload} from "../../utilities/jwt";
 
 
 /**
@@ -20,7 +20,7 @@ export async function authorize(ctx, next) {
   let id: string;
   let exp: number;
   try{
-    let payload = JSON.parse(new Buffer(auth.match(/\.(\w+)\./)[1], 'base64').toString('utf8'));
+    let payload = await getPayload(auth);
     id = payload.u_id;
     exp = payload.exp;
   }
@@ -64,7 +64,7 @@ export async function authorize(ctx, next) {
     return;
   }
 
-  //5.通过验证
+  //6.通过验证
   return await next();
 }
 export default authorize;
