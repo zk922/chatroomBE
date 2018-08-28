@@ -11,7 +11,7 @@ import {createJWT} from "../../utilities/jwt";
  * 5.保存成功颁发token
  * **/
 
-//TODO 并没有防止刷接口，这点以后需要处理
+//TODO 并没有防止刷接口，这点以后需要处理。或者后面改成https就行
 
 export async function register(ctx, next) {
   console.log('收到注册信息：',ctx.request.body);
@@ -25,7 +25,7 @@ export async function register(ctx, next) {
   }
   if(!/^[a-zA-Z]\w{2,7}$/.test(params.name)){
     ctx.status = 403;
-    ctx.body = {result: 1, msg: '用户名格式不符合要求'};
+    ctx.body = {result: 2, msg: '用户名格式不符合要求'};
     return;
   }
 
@@ -38,13 +38,13 @@ export async function register(ctx, next) {
     if(result && result.get('name') === params.name){
       console.log('用户名已经存在');
       ctx.status = 409;
-      ctx.body = {result: 2, msg: '用户名已存在'};
+      ctx.body = {result: 3, msg: '用户名已存在'};
       return;
     }
   }
   catch (e) {
     console.log(e);
-    ctx.body = {result: 2, msg: '服务器错误，注册失败'};
+    ctx.body = {result: 4, msg: '服务器错误，注册失败'};
     ctx.status = 500;
     return;
   }
@@ -65,7 +65,7 @@ export async function register(ctx, next) {
   }
   catch (e) {
     console.log('保存数据失败', e);
-    ctx.body = {result: 3, msg: '服务器错误，注册失败'};
+    ctx.body = {result: 5, msg: '服务器错误，注册失败'};
     ctx.status = 500;
     return
   }

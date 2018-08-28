@@ -35,14 +35,14 @@ export async function login(ctx, next) {
     else{
       //用户不存在
       ctx.status = 404;
-      ctx.body = {result: 1, msg: '用户不存在'};
+      ctx.body = {result: 2, msg: '用户不存在'};
       return;
     }
   }
   catch (e) {
     //调取数据库失败
     ctx.status = 500;
-    ctx.body = {result: 1, msg: '服务器调取数据失败'};
+    ctx.body = {result: 3, msg: '服务器调取数据失败'};
     return;
   }
   //2.生成token
@@ -55,7 +55,7 @@ export async function login(ctx, next) {
   }
   catch (e) {
     ctx.status = 500;
-    ctx.body = {result: 2, msg: '新secret保存失败'};
+    ctx.body = {result: 4, msg: '新secret保存失败'};
     return;
   }
   //3.颁发token
@@ -67,9 +67,3 @@ export async function login(ctx, next) {
 }
 
 export default login;
-
-
-
-
-
-
