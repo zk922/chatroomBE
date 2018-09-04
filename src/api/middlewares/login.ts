@@ -62,7 +62,17 @@ export async function login(ctx, next) {
   ctx.cookies.set('token', token, {
     maxAge: 7 * 24 * 60 * 60 * 1000
   });
-  ctx.body = {result: 0, msg: '登录成功'};
+  ctx.body = {
+    result: 0,
+    msg: '登录成功',
+    token: token,
+    userInfo: {
+      u_id: result.id,
+      nickName: result.get('nickName'),
+      friends: result.get('friends'),
+      groups: result.get('groups')
+    }
+  };
   ctx.status = 200;
 }
 
