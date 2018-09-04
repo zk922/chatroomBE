@@ -51,3 +51,13 @@ export namespace friendShipInterfaces {
   }
 
 }
+
+export interface MessageInterface {
+  source: string,       //发送消息的源头，用户id或者服务器，服务器标识为'server'
+  date: number,         //消息创建日期
+  room: string,          //消息归属哪个room
+  id: string,           //消息id
+  data: any,             //消息内容
+  step: number,          //0发送中，1发送成功
+  type: string           //消息类型，
+}

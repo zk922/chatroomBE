@@ -1,11 +1,12 @@
 import {Server} from "http";
 import * as io from "socket.io";
-import {Namespace, ServerOptions, Socket} from "socket.io";
+import {Namespace, Packet, ServerOptions, Socket} from "socket.io";
 import {Server as IoServer} from "socket.io";
 import User from "./User";
 import {compareJWT, getPayload} from "../utilities/jwt";
 import {UserModel} from "../mongoose/mongooseModels";
 import {Document} from "mongoose";
+import {Message} from "./Message";
 
 export class ChatServer {
 
@@ -91,22 +92,37 @@ export class ChatServer {
      * **/
     let authResult = await this.authorize(socket);
     if(authResult.result !== 0){
-
+      this.usersList.set(socket, User.createAnonymousUser());
     }
-
     this.usersList.set(socket, authResult.user);
-
-
+    //添加socket事件监听
+    socket.use(this.packetMiddleware.bind(this));
+    //1.分配到public chat
+    this.toPublic(socket);
+    //TODO 分配好友和群组
   }
 
-  private createUser(socket: Socket){
-
-  };
-
+  private toPublic(socket: Socket){
+    socket.join('public');
+  }
 
   static createServer(server: Server){
     return new ChatServer(server);
   }
+
+
+  public packetMiddleware(packet: Packet, next){
+    /**
+     * 接收发送消息的格式
+     * **/
+    let data = new Message(packet[1]);
+    //TODO 保存历史记录的话，这里开始需要保存
+    console.log(packet);
+    data.step = 1;
+    this.nsp.to(packet[0]).emit(packet[0], data);
+  }
+
+
 }
 
 export default ChatServer;

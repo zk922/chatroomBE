@@ -11,11 +11,15 @@ export class User {
 
   public groups: string[];
 
-  constructor(document: Document){
+  constructor(document?: Document){
     this.u_id = document.id;
     this.groups = document.get('groups');
     this.nickName = document.get('nickName');
     this.friends = document.get('friends')
+  }
+
+  static createAnonymousUser(){
+    return new User();
   }
 }
 export default User;

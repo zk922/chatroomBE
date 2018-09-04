@@ -76,7 +76,17 @@ export async function register(ctx, next) {
   ctx.cookies.set('token', token, {
     maxAge: 7 * 24 * 60 * 60 * 1000
   });
-  ctx.body = {result: 0, msg: '注册成功'};
+  ctx.body = {
+    result: 0,
+    msg: '注册成功',
+    token: token,
+    userInfo: {
+      u_id: newUser.id,
+      nickName: '新用户',
+      friends: [],
+      groups: []
+    }
+  };
   ctx.status = 200;
 
 }
