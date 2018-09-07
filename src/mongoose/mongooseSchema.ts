@@ -36,13 +36,28 @@ export const UserInGroup = new Schema({
 
 
 export const User = new Schema({
+  createTime: {
+    type: Date,
+    default: Date.now
+  },
+  lastLoginTime: {
+    type: Date,
+    default: Date.now
+  },
+
   //认证信息相关
-  name: String,  //账号
-  pwd: String,   //密码
-  secret: String,//token的salt
+  name: {
+    type: String,
+    trim: true,
+    unique: true,
+    match: /^[a-zA-Z]\w{2,7}$/,
+    index: true
+  },  //账号
+  pwd: String,        //密码
+  secret: String,     //token的salt
 
   //用户信息相关
-  nickName: String,   //用户昵称
+  nickName: String,         //用户昵称
   friends: [String],        //用户朋友关系列表,好友关系id array
   groups: [String]          //用户群组关系列表，群组关系id array
 });
