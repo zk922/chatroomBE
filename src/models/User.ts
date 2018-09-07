@@ -15,7 +15,7 @@ export class User {
     this.u_id = document.id;
     this.groups = document.get('groups');
     this.nickName = document.get('nickName');
-    this.friends = document.get('friends')
+    this.friends = document.get('friends');
   }
 
   static createAnonymousUser(){

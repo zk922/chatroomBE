@@ -46,6 +46,7 @@ async function serverStart(serverConfig, logConfig) {
    * 创建聊天服务
    * **/
   const server = http.createServer(app.callback());
+
   const chatServer = ChatServer.createServer(server);
 
 
