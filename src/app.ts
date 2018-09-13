@@ -3,7 +3,6 @@ import * as mount from "koa-mount";
 import * as http from "http";
 import * as bodyparser from "koa-bodyparser";
 
-import api from "./api/api";
 import statics from "./statics/statics";
 import logger from "./utilities/log";
 import ChatServer from "./models/ChatServer";
@@ -12,16 +11,9 @@ async function serverStart(serverConfig, logConfig) {
   const app = new Koa();
 
   /**
-   * 添加日志
+   * 添加http访问日志
    * **/
   app.use(logger(logConfig));
-
-  // /**
-  //  * 设置通用cookie
-  //  * **/
-  // app.use(async function (ctx, next) {
-  //   ctx.cookies.set('pwdSalt', await createSalt())
-  // });
 
   /**
    * 添加bodyparser
@@ -31,15 +23,11 @@ async function serverStart(serverConfig, logConfig) {
     enableTypes: ['json', 'form', 'text']
   }));
 
-
   /**
-   * 一个为静态资源服务，一个为api服务
-   * 静态资源仅包含前端资源，使用ng打包，发布在statics/www/目录下
-   * api中包含api路由，包含所有类型增改删查的接口
+   * 静态资源服务
+   * 静态资源仅包含前端资源，发布在statics/www/目录下
    * */
   app.use(mount('/', statics));
-  app.use(mount('/api', api));
-
 
   /**
    * 在服务器添加socket.io 支持
@@ -47,8 +35,7 @@ async function serverStart(serverConfig, logConfig) {
    * **/
   const server = http.createServer(app.callback());
 
-  const chatServer = ChatServer.createServer(server);
-
+  const io = ChatServer.createServer(server);
 
   /**
    * 启动服务器
