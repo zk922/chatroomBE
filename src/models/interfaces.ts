@@ -1,3 +1,6 @@
+import ChatServer from "./ChatServer";
+import {Packet, Socket} from "socket.io";
+
 export namespace userInterfaces{
   export interface BaseUser {
     u_id: string;
@@ -61,3 +64,31 @@ export interface MessageInterface {
   step: number,          //0发送中，1发送成功
   type: string           //消息类型，
 }
+
+
+export namespace ioServerInterfaces{
+  export interface EnhancedPacket{
+    io: ChatServer,
+    packet: Packet,
+    socket: Socket
+  }
+
+  export interface RouterPacket extends EnhancedPacket{
+    path: string,
+    data: any
+  }
+
+  export interface OriginalSocketMiddleware{
+    (packet: Packet, next: (err?: any) => void): void
+  }
+
+  export interface EnhancedMiddleware {
+    (packet: EnhancedPacket, next: (err?: any) => void): void
+  }
+
+  export interface RouterMiddleware {
+    (packet: RouterPacket, next: (err?: any) => void): void
+  }
+
+}
+
