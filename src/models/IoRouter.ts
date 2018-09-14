@@ -5,6 +5,7 @@ import {ioServerInterfaces} from "./interfaces";
 import EnhancedMiddleware = ioServerInterfaces.EnhancedMiddleware;
 import RouterPacket = ioServerInterfaces.RouterPacket;
 import RouterMiddleware = ioServerInterfaces.RouterMiddleware;
+import EnhancedPacket = ioServerInterfaces.EnhancedPacket;
 
 
 
@@ -18,7 +19,11 @@ export class IoRouter {
   public routes(): EnhancedMiddleware{
 
     //TODO developing
-    return ()=>{};
+    return (packet: EnhancedPacket, next: (err?: any) => void)=>{
+      this.mwList.forEach((v, i)=>{
+
+      });
+    };
   }
 
 
@@ -36,6 +41,13 @@ export class IoRouter {
 
   }
 
+  private getPathReg(path: string): RegExp{
+    let pathSegments = path.replace(' ', '').split('/').filter(v=>v!=='');
+    let regStr = '';
+    //TODO
+    return /\d/
+
+  }
 
 }
 export default IoRouter;
