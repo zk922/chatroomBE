@@ -1,7 +1,10 @@
 import * as fs from 'fs';
 import {WriteStream} from "fs";
 import {Context} from "koa";
-
+/**
+ * 自己简单实现的http请求日志，但是该日志无法监控socket.io在使用websocket时候的日志
+ * 若要监测，需要另外实现
+ * **/
 function logFileName(): string {//获取当前最新的日志文件名，文件名按照2018-7-6格式
   return new Date().toLocaleDateString().replace('/', '-') + '.log';
 }

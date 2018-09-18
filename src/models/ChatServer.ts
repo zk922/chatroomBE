@@ -14,7 +14,7 @@ export class ChatServer {
     path: '/chat'
   };
 
-  static createServer(server: Server){
+  static createServer(server: Server): ChatServer{
     return new ChatServer(server);
   }
 

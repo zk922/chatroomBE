@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <script src="socket.io.js"></script>
+  <script src="fn.js"></script>
 </head>
 <body>
 <div id="result">
@@ -44,8 +45,8 @@
     };
     xhr.send(JSON.stringify({name: document.getElementById('username').value, pwd: document.getElementById('password').value}));
   }
-  
-  
+
+  websocket();
   
   function websocket() {
     let chat = io('/',{
@@ -79,7 +80,7 @@
       if(input.value){
         let userInfo = JSON.parse(localStorage.getItem('userInfo'));
         let date = new Date().getTime();
-        chat.emit('public', {
+        chat.emit('public/123/ddd', {
           source: userInfo.u_id,       //发送消息的源头，用户id或者服务器，服务器标识为'server'
           date: date,         //消息创建日期
           room: 'public',          //消息归属哪个room
