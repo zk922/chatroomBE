@@ -4,6 +4,7 @@ import {dbConfig, logConfig, serverConfig} from "./config";
 
 /**
  * 聊天室主引导文件
+ * config文件为配置,需要另配
  * **/
 async function start(){
   await connectDb(dbConfig);
