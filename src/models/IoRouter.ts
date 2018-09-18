@@ -17,6 +17,7 @@ export class IoRouter {
    * **/
   public routes(): EnhancedMiddleware{
     return (packet: EnhancedPacket, next: (err?: any) => void)=>{
+      let n;
       this.mwList.forEach((v, i)=>{
         let path = packet.packet[0];
         //进行path/event路径匹配
@@ -30,9 +31,10 @@ export class IoRouter {
           //传入扩展后的路由中间件
           //注：这里没有更改this指向
           let routerPacket: RouterPacket = Object.assign({data: data, path: path}, packet);
-          v.mw(routerPacket, next);
+          n = v.mw(routerPacket, next);
         }
       });
+      return n;
     };
   }
 
