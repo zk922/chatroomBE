@@ -6,7 +6,7 @@ import * as bodyparser from "koa-bodyparser";
 import statics from "./statics/statics";
 import logger from "./utilities/log";
 import ChatServer from "./models/ChatServer";
-import router from "./api/router";
+// import router from "./api/router";
 
 async function serverStart(serverConfig, logConfig) {
   const app = new Koa();
@@ -38,7 +38,7 @@ async function serverStart(serverConfig, logConfig) {
 
   const io = ChatServer.createServer(server);
 
-  io.use(router.routes());
+  // io.use(router.routes());
 
   /**
    * 启动服务器
