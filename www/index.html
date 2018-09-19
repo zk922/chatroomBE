@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <script src="socket.io.js"></script>
-  <script src="fn.js"></script>
 </head>
 <body>
 <div id="result">
@@ -19,104 +18,6 @@
 <br>
 <button id="login">登录</button>
 <!--<script src="ddd,js"></script>-->
-<script>
-  const btn = document.getElementById('submit');
-  const input = document.getElementById('input');
-  const div = document.getElementById('result');
-  const loginBtn = document.getElementById('login');
-  
-  loginBtn.addEventListener('click', login);
-  
-  
-  function login() {
-    let xhr = new XMLHttpRequest();
-    xhr.open('post', '/api/login');
-    xhr.setRequestHeader('Content-type', 'application/json');
-    // xhr.setRequestHeader('authorize', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1MzQzMjIyOTgxMzEsImV4cCI6MTUzNDkyNzA5ODEzMSwidV9pZCI6IjViNzNlNjdhMWRlMjE1NDU5ODQ3ZTQ2YyJ9.vkAXE2ckfQLdLZZjdeooV/qTUoSZJq/Slz9q3GJEOck=');
-    xhr.responseType = 'json';
-    xhr.onreadystatechange = function (e) {
-      if(xhr.readyState === 4 && xhr.status === 200){
-        console.log(xhr.response);
-        localStorage.setItem('token', xhr.response.token);
-        localStorage.setItem('userInfo', JSON.stringify(xhr.response.userInfo));
-        loginBtn.disabled = true;
-        websocket();
-      }
-    };
-    xhr.send(JSON.stringify({name: document.getElementById('username').value, pwd: document.getElementById('password').value}));
-  }
-
-  websocket();
-  
-  function websocket() {
-    let chat = io('/',{
-      path: '/chat',
-      query: {
-        authorize: localStorage.getItem('token')
-      }
-    });
-    
-    chat.on('connect', function () {
-      console.log('connected');
-    });
-
-    chat.on('public', function (data) {
-      console.log(data);
-      
-      if(data.step){
-        let userInfo = JSON.parse(localStorage.getItem('userInfo'));
-        console.log(userInfo)
-        if(userInfo.u_id !== data.source){
-          div.innerHTML += `${data.source}  says: ${data.data}<br>`;
-        }
-      }
-      else{
-      
-      }
-      
-    });
-    
-    btn.addEventListener('click', function (e) {
-      if(input.value){
-        let userInfo = JSON.parse(localStorage.getItem('userInfo'));
-        let date = new Date().getTime();
-        chat.emit('public/123/ddd', {
-          source: userInfo.u_id,       //发送消息的源头，用户id或者服务器，服务器标识为'server'
-          date: date,         //消息创建日期
-          room: 'public',          //消息归属哪个room
-          id: `public-${userInfo.u_id}-${date}`,           //消息id
-          data: input.value,             //消息内容
-          step: 0,          //0发送中，1发送成功
-          type: 'ok'           //消息类型，
-        });
-        div.innerHTML += `${userInfo.u_id}  says: ${input.value}<br>`;
-      }
-    })
-  }
-  
-</script>
-<script>
-  
-  //
-  // let chat2 = io('/public',{path: '/chat'});
-  // console.log(chat2);
-  // chat2.on('connect', function () {
-  //   chat2.emit('eee', 'ddd');
-  //   chat2.on('message', (v)=>{console.log(v)})
-  //
-  // });
-  // var CreateWebSocket = (function () {
-  //   return function (urlValue) {
-  //     if(window.WebSocket) return new WebSocket(urlValue);
-  //     if(window.MozWebSocket) return new MozWebSocket(urlValue);
-  //     return false;
-  //   }
-  // })();
-  /* 实例化 WebSocket 连接对象, 地址为 ws 协议 */
-  // var webSocket = CreateWebSocket("ws://localhost:8088/chat/room");
-  // webSocket.onopen = ()=>{console.log('open')
-  //   webSocket.send('aaa')}
-  // webSocket.onmessage = v=>{console.log(v)}
-</script>
+<script src="./fn.js"></script>
 </body>
 </html>

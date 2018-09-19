@@ -11,15 +11,13 @@ export class IoRouter {
 
   constructor(){}
 
-
   /**
    * 根据添加的路由中间件，返回io service使用的中间件
    * **/
   public routes(): EnhancedMiddleware{
     return (packet: EnhancedPacket, next: (err?: any) => void)=>{
-      let n;
+      let path = packet.packet[0];
       this.mwList.forEach((v, i)=>{
-        let path = packet.packet[0];
         //进行path/event路径匹配
         if(v.reg.test(path)){
           //解析参数
@@ -31,10 +29,10 @@ export class IoRouter {
           //传入扩展后的路由中间件
           //注：这里没有更改this指向
           let routerPacket: RouterPacket = Object.assign({data: data, path: path}, packet);
-          n = v.mw(routerPacket, next);
+          v.mw(routerPacket);
         }
       });
-      return n;
+      return next();
     };
   }
 

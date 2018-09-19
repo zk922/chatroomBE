@@ -87,7 +87,7 @@ export namespace ioServerInterfaces{
   }
 
   export interface RouterMiddleware {
-    (packet: RouterPacket, next: (err?: any) => void): void
+    (packet: RouterPacket): void
   }
 
 }
