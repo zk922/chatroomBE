@@ -39,6 +39,12 @@ async function serverStart(serverConfig, logConfig) {
 
   const io = ChatServer.createServer(server);
 
+  // io.use(loginRouter.routes());
+  io.use(function (packet, next) {
+    next();
+    console.log('跳出');
+    // next();
+  });
   io.use(loginRouter.routes());
 
   /**

@@ -1,7 +1,5 @@
 import {IoRouter} from "../models/IoRouter";
 
-
-
 /**
  * /api/login            账号密码登录
  * /api/loginByToken     通过token登录
@@ -9,7 +7,7 @@ import {IoRouter} from "../models/IoRouter";
  * 该三个api不需要验证token，放在token验证中间件之前
  * **/
 export const loginRouter = new IoRouter();
-loginRouter.use('/api/loginByToken', function (packet, next) {
+loginRouter.use('/api/loginByToken', function (packet) {
   console.log(packet.packet[1]);
 });
 
@@ -24,7 +22,7 @@ export const apiRouter = new IoRouter();
 
 
 export const messageRouter = new IoRouter();
-messageRouter.use('/public/:id/:name', function (packet, next) {
+messageRouter.use('/public/:id/:name', function (packet) {
   console.log(packet.data);
   console.log(packet.path);
   console.log(packet.packet[0]);
