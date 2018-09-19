@@ -9,7 +9,9 @@ import {IoRouter} from "../models/IoRouter";
  * 该三个api不需要验证token，放在token验证中间件之前
  * **/
 export const loginRouter = new IoRouter();
-
+loginRouter.use('/api/loginByToken', function (packet, next) {
+  console.log(packet.packet[1]);
+});
 
 
 
