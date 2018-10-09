@@ -46,7 +46,10 @@ async function serverStart(serverConfig, logConfig) {
     // next();
   });
   io.use(loginRouter.routes());
-
+  io.use(function (packet, next) {
+    console.log('跳出112');
+    // next();
+  });
   /**
    * 启动服务器
    * **/
