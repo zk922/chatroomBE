@@ -20,6 +20,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "mongoose": "^5.2.6",
+    "path-to-regexp": "^2.4.0",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
     "strip-ansi": "4.0.0"
@@ -33,6 +34,7 @@
     "@types/koa-static": "^4.0.0",
     "@types/mongoose": "5.2.3",
     "@types/node": "^10.5.4",
+    "@types/path-to-regexp": "^1.7.0",
     "@types/socket.io": "^1.4.36",
     "@types/socket.io-client": "^1.4.32",
     "@types/strip-ansi": "3.0.0",

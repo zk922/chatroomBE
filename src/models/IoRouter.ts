@@ -3,9 +3,10 @@
  * **/
 import {ioServerInterfaces} from "./interfaces";
 import EnhancedMiddleware = ioServerInterfaces.EnhancedMiddleware;
+import EnhancedPacket = ioServerInterfaces.EnhancedPacket;
 import RouterPacket = ioServerInterfaces.RouterPacket;
 import RouterMiddleware = ioServerInterfaces.RouterMiddleware;
-import EnhancedPacket = ioServerInterfaces.EnhancedPacket;
+
 
 export class IoRouter {
 

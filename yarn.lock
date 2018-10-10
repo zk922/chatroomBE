@@ -139,6 +139,12 @@
   version "10.5.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.5.tgz#8e84d24e896cd77b0d4f73df274027e3149ec2ba"
 
+"@types/path-to-regexp@^1.7.0":
+  version "1.7.0"
+  resolved "http://registry.npm.taobao.org/@types/path-to-regexp/download/@types/path-to-regexp-1.7.0.tgz#f1af9d9c9db5f8ad80aa75ed424db665c48d6cd4"
+  dependencies:
+    path-to-regexp "*"
+
 "@types/range-parser@*":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.2.tgz#fa8e1ad1d474688a757140c91de6dace6f4abc8d"
@@ -2579,6 +2585,10 @@ path-is-absolute@1.0.1, path-is-absolute@^1.0.0:
 path-is-inside@^1.0.1, path-is-inside@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/path-is-inside/-/path-is-inside-1.0.2.tgz#365417dede44430d1c11af61027facf074bdfc53"
+
+path-to-regexp@*, path-to-regexp@^2.4.0:
+  version "2.4.0"
+  resolved "http://registry.npm.taobao.org/path-to-regexp/download/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
 
 path-to-regexp@^1.1.1:
   version "1.7.0"
