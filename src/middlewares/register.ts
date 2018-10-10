@@ -1,6 +1,6 @@
-import {UserModel} from "../../mongoose/mongooseModels";
-import {createRandomString, generatePwdHash} from "../../utilities/crypto";
-import {createJWT} from "../../utilities/jwt";
+import {UserModel} from "../mongoose/mongooseModels";
+import {createRandomString, generatePwdHash} from "../utilities/crypto";
+import {createJWT} from "../utilities/jwt";
 
 /**
  * 注册流程：

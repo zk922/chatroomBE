@@ -1,4 +1,4 @@
-import {checkJWT} from "../../utilities/jwt";
+import {checkJWT} from "../utilities/jwt";
 
 
 /**

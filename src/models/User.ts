@@ -1,4 +1,3 @@
-// import {Socket} from "socket.io";
 import {Document} from "mongoose";
 
 export class User {

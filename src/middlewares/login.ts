@@ -1,6 +1,6 @@
-import {UserModel} from "../../mongoose/mongooseModels";
-import {comparePwd, createRandomString} from "../../utilities/crypto";
-import {createJWT} from "../../utilities/jwt";
+import {UserModel} from "../mongoose/mongooseModels";
+import {comparePwd, createRandomString} from "../utilities/crypto";
+import {createJWT} from "../utilities/jwt";
 import {Document} from "mongoose";
 
 /**
