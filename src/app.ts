@@ -4,7 +4,7 @@ import * as http from "http";
 import * as bodyparser from "koa-bodyparser";
 
 import statics from "./statics/statics";
-import logger from "./utilities/log";
+import logger from "./middlewares/log";
 import ChatServer from "./models/ChatServer";
 import {loginRouter} from "./api/router";
 // import router from "./api/router";
